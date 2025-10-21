@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alpha Edge — Charles Corporation</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Electrical services, investments, and grooming brand by Malik Charles.">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo">AE</div>
+        <div class="brand-text">
+          <strong>Alpha Edge</strong>
+          <span>Charles Corporation</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#contact">Contact</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#shop">Shop</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="pill">Premium Men’s Grooming • Pro Electrical</p>
+        <h1>Confidence starts with a clean edge — and solid electrical work.</h1>
+        <p class="sub">Trimmers & beard care built for performance. Electrical services you can trust for residential, commercial, and industrial projects.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#services">See Services</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <!-- HERO IMAGE — upload a file named hero.jpg to this repo root -->
+      <figure class="hero-media">
+        <img src="hero.jpg" alt="Man trimming beard with clipper" />
+        <figcaption>Man trimming beard with clipper</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <div class="container">
+      <h2>Services</h2>
+
+      <div class="cards">
+        <article class="card">
+          <h3>Electrical Services (Primary)</h3>
+          <p>Licensed electrician with 8 years of hands-on experience. Residential, commercial, industrial, troubleshooting, installs, and upgrades.</p>
+          <ul class="bullets">
+            <li>Panel upgrades & service changes</li>
+            <li>EV chargers, generators, and transfer switches</li>
+            <li>Lighting design & retrofit</li>
+            <li>New construction & remodels</li>
+            <li>Industrial controls & maintenance</li>
+          </ul>
+
+          <form class="form" action="https://formspree.io/f/your-form-id" method="POST">
+            <input type="hidden" name="_subject" value="New Electrical Services Request" />
+            <label>
+              Your Name
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              Phone Number
+              <input type="tel" name="phone" required />
+            </label>
+            <label>
+              Work Needed (details)
+              <textarea name="details" rows="4" required></textarea>
+            </label>
+            <!-- helps Formspree know who to reply to if user types email in details; optional explicit email field -->
+            <label>
+              Email (optional)
+              <input type="email" name="email" />
+            </label>
+            <button class="btn primary" type="submit">Request Quote</button>
+            <p class="form-note">Or email me directly: <a href="mailto:malikmcharles@gmail.com">malikmcharles@gmail.com</a></p>
+          </form>
+        </article>
+
+        <article class="card">
+          <h3>Investment Consultations</h3>
+          <p>High-level guidance and planning conversations. Pick a consultation type and I’ll follow up to schedule.</p>
+          <form class="form" action="https://formspree.io/f/your-form-id" method="POST">
+            <input type="hidden" name="_subject" value="New Investment Consultation Request" />
+            <label>
+              Your Name
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              Phone Number
+              <input type="tel" name="phone" required />
+            </label>
+            <label>
+              Type of Consultation
+              <select name="consultation" required>
+                <option value="">Select one</option>
+                <option>Portfolio review</option>
+                <option>Retirement planning</option>
+                <option>Tax-efficient investing</option>
+                <option>Business planning</option>
+                <option>Other (describe below)</option>
+              </select>
+            </label>
+            <label>
+              Notes (optional)
+              <textarea name="notes" rows="3"></textarea>
+            </label>
+            <label>
+              Email (optional)
+              <input type="email" name="email" />
+            </label>
+            <button class="btn" type="submit">Request Consultation</button>
+          </form>
+        </article>
+
+        <article class="card" id="shop">
+          <h3>Shop (Grooming)</h3>
+          <p>Trimmers and beard care built for comfort, durability, and performance.</p>
+          <a class="btn primary" href="https://mmcharles.myshopify.com" target="_blank" rel="noopener">Shop Now</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container about-grid">
+      <div>
+        <h2>About</h2>
+        <ul class="bullets">
+          <li>Electrical services</li>
+          <li>Investment services</li>
+          <li>Ground scaping</li>
+          <li>Freelancer</li>
+        </ul>
+      </div>
+      <div>
+        <p>
+          I’m Malik, from Louisiana. I’ve been doing electrical work for 8 years and hold
+          10 electrical licenses. When I’m not on a job, I’m focused on investing, side projects,
+          and spending time with family and friends. I built Alpha Edge to bring together premium
+          grooming products with reliable trade services—so you can look sharp and live sharp.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:malikmcharles@gmail.com">malikmcharles@gmail.com</a></p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Charles Corporation</span>
+      <a href="mailto:malikmcharles@gmail.com">malikmcharles@gmail.com</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
