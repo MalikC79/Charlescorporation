@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alpha Edge — Premium Men's Grooming</title>
+
+  <!-- Nice font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0b0c; --card:#121216; --muted:#a7b0ba; --text:#fff;
+      --accent:#00b3ff; --accent2:#7dd3fc; --ring:rgba(0,179,255,.35);
+      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.45); --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text); background:var(--bg);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      background:
+        radial-gradient(900px 500px at 15% -10%, rgba(125,211,252,.1), transparent 60%),
+        radial-gradient(800px 500px at 120% 10%, rgba(0,179,255,.15), transparent 60%),
+        var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin-inline:auto; padding:0 20px}
+
+    /* NAV */
+    .nav{position:sticky; top:0; z-index:50; background:rgba(11,11,12,.65); backdrop-filter:blur(8px); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; min-height:64px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.5px}
+    .badge{width:34px; height:34px; border-radius:10px; display:grid; place-items:center; font-weight:800; color:#001018;
+      background:linear-gradient(130deg,var(--accent),var(--accent2)); box-shadow:var(--shadow)}
+    .nav a.link{color:#e5e7eb; padding:10px 14px; border-radius:10px}
+    .nav a.link:hover{background:rgba(255,255,255,.06)}
+
+    /* BUTTONS */
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:12px 18px;
+      border-radius:12px; font-weight:700; letter-spacing:.2px; border:0; cursor:pointer}
+    .btn-primary{background:var(--accent); color:#001018; box-shadow:0 8px 20px var(--ring)}
+    .btn-primary:hover{filter:brightness(1.05)}
+    .btn-ghost{background:transparent; color:#fff; border:1px solid rgba(255,255,255,.18)}
+    .btn-ghost:hover{background:rgba(255,255,255,.06)}
+
+    /* HERO */
+    .hero{padding:72px 0 40px}
+    .grid{display:grid; gap:28px; align-items:center; grid-template-columns:1.15fr .85fr}
+    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
+    .eyebrow{display:inline-flex; gap:10px; padding:6px 10px; border:1px solid rgba(255,255,255,.12); border-radius:999px; color:#cbd5e1; background:rgba(255,255,255,.03)}
+    .title{font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.05; margin:14px 0}
+    .sub{color:var(--muted); font-size:1.05rem; max-width:55ch}
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:22px}
+    .photo{
+      position:relative; border-radius:22px; overflow:hidden; box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.12); background:#0e0e11;
+    }
+    .photo img{display:block; width:100%; height:100%; object-fit:cover; filter:saturate(1.05) contrast(1.05)}
+    .photo:after{ /* soft gradient overlay for depth */
+      content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.35) 70%);
+    }
+
+    /* FEATURE CARDS */
+    .features{padding:10px 0 6px}
+    .cards{display:grid; gap:16px; grid-template-columns:repeat(3,1fr)}
+    @media (max-width:900px){ .cards{grid-template-columns:1fr} }
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .card h4{margin:6px 0 8px}
+    .muted{color:var(--muted)}
+
+    /* PRODUCT STRIP */
+    .products{padding:14px 0}
+    .product-row{display:grid; gap:16px; grid-template-columns:repeat(3,1fr)}
+    @media (max-width:900px){ .product-row{grid-template-columns:1fr} }
+    .p{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:14px}
+    .p h5{margin:10px 0 6px}
+    .price{color:#cde9ff; font-weight:700}
+
+    /* FOOTER */
+    footer{border-top:1px solid rgba(255,255,255,.08); margin-top:40px}
+    .foot{display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; padding:24px 0; color:#cbd5e1}
+
+    /* CONTACT DRAWER */
+    .drawer{position:fixed; inset:0; display:none; place-items:end center; z-index:1000; background:rgba(0,0,0,.45)}
+    .drawer.open{display:grid}
+    .panel{width:min(560px,92vw); background:var(--card); border:1px solid rgba(255,255,255,.12);
+      border-bottom:none; border-radius:20px 20px 0 0; padding:20px; box-shadow:var(--shadow); animation:slideUp .18s ease-out}
+    @keyframes slideUp{from{transform:translateY(16px); opacity:.7} to{transform:none; opacity:1}}
+    .row{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .contact-grid{display:grid; gap:10px; margin-top:12px}
+    .kbd{font-family:ui-monospace,Menlo,Consolas,monospace; background:#0a0a0c; border:1px solid rgba(255,255,255,.12); padding:8px 10px; border-radius:10px; color:#e5e7eb}
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="nav">
+    <div class="container nav-inner">
+      <div class="brand"><div class="badge">AE</div><span>Alpha Edge</span></div>
+      <div>
+        <a class="link" href="#about">About</a>
+        <a class="link" href="https://mmcharles.myshopify.com" target="_blank" rel="noopener">Shop</a>
+        <a class="link" href="#" id="openContact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container grid">
+      <div>
+        <span class="eyebrow">Premium Men’s Grooming</span>
+        <h1 class="title">Confidence starts with a clean edge.</h1>
+        <p class="sub">Trimmers and beard care engineered for everyday performance. Built tough, tuned for comfort, and designed to look sharp on your counter.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="https://mmcharles.myshopify.com" target="_blank" rel="noopener">Shop Now</a>
+          <button class="btn btn-ghost" id="openContact2">Contact</button>
+        </div>
+      </div>
+
+      <!-- Your photo -->
+      <div class="photo">
+        <img src="beard.jpg" alt="Man trimming beard with clipper">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="about" class="features">
+    <div class="container cards">
+      <div class="card"><h4>Built to Last</h4><p class="muted">All-metal housings and high-torque motors designed for daily use.</p></div>
+      <div class="card"><h4>Easy Maintenance</h4><p class="muted">Rinse-safe heads, quick-swap blades, and a simple cleaning routine.</p></div>
+      <div class="card"><h4>No-Hassle Support</h4><p class="muted">Real help when you need it. Fast replacements and friendly guidance.</p></div>
+    </div>
+  </section>
+
+  <!-- PRODUCT PREVIEW (links to Shopify) -->
+  <section class="products">
+    <div class="container">
+      <div class="product-row">
+        <div class="p">
+          <div class="muted">Trimmer</div>
+          <h5>Alpha Edge Pro</h5>
+          <div class="price">$69</div>
+          <div style="margin-top:10px"><a class="btn btn-primary" href="https://mmcharles.myshopify.com" target="_blank" rel="noopener">Buy on Shopify</a></div>
+        </div>
+        <div class="p">
+          <div class="muted">Beard Kit</div>
+          <h5>Edge & Nourish Set</h5>
+          <div class="price">$49</div>
+          <div style="margin-top:10px"><a class="btn btn-primary" href="https://mmcharles.myshopify.com" target="_blank" rel="noopener">Buy on Shopify</a></div>
+        </div>
+        <div class="p">
+          <div class="muted">Accessories</div>
+          <h5>Precision Guards</h5>
+          <div class="price">$19</div>
+          <div style="margin-top:10px"><a class="btn btn-primary" href="https://mmcharles.myshopify.com" target="_blank" rel="noopener">Buy on Shopify</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container foot">
+      <span>© 2025 Alpha Edge</span>
+      <span>Made with ♥ on a phone</span>
+    </div>
+  </footer>
+
+  <!-- CONTACT DRAWER -->
+  <div class="drawer" id="drawer">
+    <div class="panel">
+      <div class="row">
+        <h3 style="margin:0">Contact Alpha Edge</h3>
+        <button aria-label="Close" class="btn btn-ghost" id="closeContact">Close</button>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <div class="muted" style="margin-bottom:6px">Call or text</div>
+          <div class="kbd">337-344-9520</div>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn btn-primary" href="tel:+13373449520">Call</a>
+          <a class="btn btn-ghost" href="sms:+13373449520">Text</a>
+          <a class="btn btn-ghost" href="mailto:hello@alphaedge.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Toggle contact drawer
+    const drawer = document.getElementById('drawer');
+    document.getElementById('openContact')?.addEventListener('click', e => { e.preventDefault(); drawer.classList.add('open'); });
+    document.getElementById('openContact2')?.addEventListener('click', e => { e.preventDefault(); drawer.classList.add('open'); });
+    document.getElementById('closeContact')?.addEventListener('click', () => drawer.classList.remove('open'));
+    drawer.addEventListener('click', (e)=>{ if(e.target === drawer) drawer.classList.remove('open'); });
+  </script>
+</body>
+</html>
